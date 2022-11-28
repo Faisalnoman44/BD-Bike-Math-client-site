@@ -1,16 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
     const { logIn, googleSignIn } = useContext(AuthContext)
 
     const { register, formState: { errors }, handleSubmit } = useForm()
-
     const [loginError, setLoginError] = useState('')
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail)
+    const location = useLocation();
     const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || '/';
 
 
 
@@ -21,7 +26,7 @@ const Login = () => {
                 setLoginError('')
                 const user = result.user;
                 console.log(user)
-                navigate('/')
+                setLoginUserEmail(data.email)
             })
             .catch(err => console.log(err))
 
@@ -32,8 +37,13 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setLoginUserEmail(user.email)
             })
             .catch(err => console.log(err))
+    }
+
+    if (token) {
+        navigate(from, { replace: true })
     }
 
     return (

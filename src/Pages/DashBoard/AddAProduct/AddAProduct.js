@@ -4,21 +4,25 @@ import { useForm } from 'react-hook-form';
 
 
 const AddAProduct = () => {
-    const [addAProduct, setAddAProduct] = useState('')
 
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    const handleAddBike = data => {
+        console.log(data);
+    }
+
     return (
         <div>
-            <form onSubmit={handleSubmit()}>
+            <h1 className='text-2xl my-4'>Add A Product</h1>
+            <form onSubmit={handleSubmit(handleAddBike)} className='p-5 md:p-0'>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">BikeName</span>
                         </label>
                         <input type="text"
-                            {...register("bikeName", {
+                            {...register("name", {
                                 required: 'Bike Name is required'
                             })} className="input input-bordered w-full" />
                         {errors.name && <p className='text-error'>{errors.name.message}</p>}
@@ -39,10 +43,10 @@ const AddAProduct = () => {
 
                     <div className="form-control w-full">
                         <label className="label">
-                            <span className="label-text">Location</span>
+                            <span className="label-text">Address</span>
                         </label>
                         <input type="text"
-                            {...register("location", {
+                            {...register("address", {
                                 required: "Location is required",
 
                             })} className="input input-bordered w-full" />
@@ -66,7 +70,7 @@ const AddAProduct = () => {
                             <span className="label-text">Year of use</span>
                         </label>
                         <input type="text"
-                            {...register("yearOfUse", {
+                            {...register("year_of_use", {
                                 required: 'Year of use is required'
                             })} className="input input-bordered w-full" />
                         {errors.name && <p className='text-error'>{errors.name.message}</p>}
@@ -75,18 +79,29 @@ const AddAProduct = () => {
                         <label className="label">
                             <span className="label-text">Brand</span>
                         </label>
-                        <select {...register('userCategory')} className="select select-bordered w-full ">
-                            <option>R15</option>
-                            <option>Gixxer</option>
-                            <option>Apache</option>
+                        <select {...register('brand')} className="select select-bordered w-full ">
+                            <option value='Yamaha'>Yamaha</option>
+                            <option value='Gixxer'>Gixxer</option>
+                            <option value='TVS'>TVS</option>
                         </select>
+                    </div>
+                </div>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Photo</span>
+                        </label>
+                        <input type="file"
+                            {...register("image", {
+                                required: 'Photo is required'
+                            })} className="input input-bordered w-full" />
+                        {errors.photo && <p className='text-error'>{errors.photo.message}</p>}
                     </div>
                 </div>
 
                 <br />
-                <input className='btn btn-primary w-full ' value='Sign Up' type="submit" />
+                <input className='btn btn-primary w-full ' value='Add Bike' type="submit" />
                 <div>
-                    {addAProduct && <p className='text-error'>{addAProduct}</p>}
                 </div>
             </form>
         </div>

@@ -8,6 +8,9 @@ import AllBuyer from "../../Pages/DashBoard/AllBuyer/AllBuyer";
 import AllSeller from "../../Pages/DashBoard/AllSeller/AllSeller";
 import ReportedItem from "../../Pages/DashBoard/ReportedItem/ReportedItem";
 import AddAProduct from "../../Pages/DashBoard/AddAProduct/AddAProduct";
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
+import MyProducts from '../../Pages/DashBoard/MyProducts/MyProducts';
+import MyOrders from '../../Pages/DashBoard/MyOrders/MyOrders';
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -21,8 +24,9 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/allbikes',
+                path: '/allbike/:brand',
                 element: <AllBikes></AllBikes>,
+                loader: ({params}) => fetch(`http://localhost:5000/bikes/${params.brand}`)
             },
             {
                 path: '/login',
@@ -36,10 +40,14 @@ const router = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<DashboardLayout></DashboardLayout>,
+        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children:[
             {
                 path:'/dashboard/allbuyer',
+                element:<AllBuyer></AllBuyer>
+            },
+            {
+                path:'/dashboard',
                 element:<AllBuyer></AllBuyer>
             },
             {
@@ -53,6 +61,14 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/addaproduct',
                 element:<AddAProduct></AddAProduct>
+            },
+            {
+                path:'/dashboard/myproducts',
+                element:<MyProducts></MyProducts>
+            },
+            {
+                path:'/dashboard/myorders',
+                element:<MyOrders></MyOrders>
             },
         ]
     }

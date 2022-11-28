@@ -1,18 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import OneBike from './OneBike';
 
 const AllBikes = () => {
     // const [bikes, setBikes] = useState([])
+    const bikes = useLoaderData()
+    console.log(bikes)
 
-    const {data : bikes = [], isLoading} = useQuery({
-        queryKey:['bikes'],
-        queryFn: async () =>{
-         const res = await fetch('http://localhost:5000/bikes');
-         const data = await res.json();
-         return data;
-        }
-    })
+
+    // const {data : bikes = [], isLoading} = useQuery({
+    //     queryKey:['bikes'],
+    //     queryFn: async () =>{
+    //      const res = await fetch('http://localhost:5000/bikes');
+    //      const data = await res.json();
+    //      return data;
+    //     }
+    // })
 
     // useEffect(() =>{
     //     fetch('bike.json')

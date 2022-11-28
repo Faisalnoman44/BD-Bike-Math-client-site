@@ -1,38 +1,41 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const AllBuyer = () => {
+
+    const { data: buyers = [] } = useQuery({
+        queryKey: ['buyers'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/users/buyer');
+            const data = res.json();
+            return data;
+        }
+    })
+
     return (
         <div className='full'>
-            <h1 className='mb-10'>All buyer</h1>
+            <h1 className='text-2xl my-4'>All buyer</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                            <th>Give Access</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
-                        <tr className="hover">
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                        </tr>
+                        {
+                            buyers.map((buyer, i) => <tr key={buyer._id} className="hover">
+                                <th>{i + 1}</th>
+                                <td>{buyer.name}</td>
+                                <td>{buyer.email}</td>
+                                <td><button className='btn btn-error btn-sm'>Delete</button></td>
+                                <td><button className='btn btn-primary btn-sm'>Admin</button></td>
+                            </tr>)
+                        }
                     </tbody>
                 </table>
             </div>

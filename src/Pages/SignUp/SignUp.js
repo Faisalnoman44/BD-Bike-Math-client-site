@@ -2,13 +2,18 @@ import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
     const { createUser, googleSignIn, updateUserProfile } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
+    const [signUpUserEmail, setSignUpUserEmail] = useState('')
+    const [token] = useToken(signUpUserEmail)
     const navigate = useNavigate()
 
     const { register, formState: { errors }, handleSubmit } = useForm();
+
+    const from =  '/';
 
     const handleSignUp = data => {
         console.log(data);
@@ -20,7 +25,12 @@ const SignUp = () => {
                 const userInfo = {
                     displayName: data.name
                 }
-                handleUpdateUser(userInfo)
+                const userDetails = {
+                    name: data.name,
+                    email: data.email,
+                    userCategory: data.userCategory,
+                }
+                handleUpdateUser(userInfo, userDetails, data.email)
             })
             .catch(err => console.log(err))
     }
@@ -29,21 +39,45 @@ const SignUp = () => {
         googleSignIn()
             .then(result => {
                 const user = result.user;
+                const userDetails = {
+                    name: user.displayName,
+                    email: user.email,
+                    userCategory: 'Buyer',
+                }
+                saveUserToDb(userDetails, user.email)
                 console.log(user);
             })
             .catch(err => console.log(err))
     }
 
-    const handleUpdateUser = userInfo =>{
+    const handleUpdateUser = (userInfo, userDetails, email) => {
         updateUserProfile(userInfo)
-        .then((result) =>{
-            console.log('user Updates');
-        })
-        .catch(err => console.log(err))
+            .then((result) => {
+                console.log('user Updates');
+                saveUserToDb(userDetails, email)
+            })
+            .catch(err => console.log(err))
     }
 
-    const saveUserToDb = (name, email, userCategory) =>{
-        
+    const saveUserToDb = (userDetails, email) => {
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(userDetails)
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setSignUpUserEmail(email)
+            })
+
+    }
+
+    if (token) {
+        navigate(from, { replace: true })
     }
 
     return (
