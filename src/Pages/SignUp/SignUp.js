@@ -1,12 +1,12 @@
-import { Result } from 'postcss';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const SignUp = () => {
-    const { createUser, googleSignIn } = useContext(AuthContext)
+    const { createUser, googleSignIn, updateUserProfile } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('')
+    const navigate = useNavigate()
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
@@ -17,6 +17,10 @@ const SignUp = () => {
                 setSignUpError('')
                 const user = result.user
                 console.log(user);
+                const userInfo = {
+                    displayName: data.name
+                }
+                handleUpdateUser(userInfo)
             })
             .catch(err => console.log(err))
     }
@@ -28,6 +32,18 @@ const SignUp = () => {
                 console.log(user);
             })
             .catch(err => console.log(err))
+    }
+
+    const handleUpdateUser = userInfo =>{
+        updateUserProfile(userInfo)
+        .then((result) =>{
+            console.log('user Updates');
+        })
+        .catch(err => console.log(err))
+    }
+
+    const saveUserToDb = (name, email, userCategory) =>{
+        
     }
 
     return (
@@ -74,20 +90,10 @@ const SignUp = () => {
                         <label className="label">
                             <span className="label-text">Category</span>
                         </label>
-                        <select {...register('user-category')} className="select select-bordered w-full max-w-xs">
+                        <select {...register('userCategory')} className="select select-bordered w-full max-w-xs">
                             <option>Buyer</option>
                             <option>Seller</option>
                         </select>
-                    </div>
-                    <div className="form-control w-full">
-                        <label className="label">
-                            <span className="label-text">Photo</span>
-                        </label>
-                        <input type="file"
-                            {...register("photo", {
-                                required: 'Photo is required'
-                            })} className="input input-bordered w-full" />
-                        {errors.photo && <p className='text-error'>{errors.photo.message}</p>}
                     </div>
                     <br />
                     <input className='btn btn-primary w-full ' value='Sign Up' type="submit" />
