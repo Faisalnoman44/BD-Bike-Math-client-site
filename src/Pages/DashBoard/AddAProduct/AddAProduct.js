@@ -1,15 +1,67 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 
 
 const AddAProduct = () => {
-
-
+    const { user } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
+    // const imgbbHostKey = process.env.REACT_APP_imgbbkey;
+    const imgbbHostKey = process.env.REACT_APP_imgbbkey;
+    const navigate = useNavigate()
 
     const handleAddBike = data => {
+        const image = data.photo[0];
+        console.log(image);
+        const formData = new FormData();
+        formData.append('image', image)
         console.log(data);
+
+        const url = `https://api.imgbb.com/1/upload?key=${imgbbHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                if (imgData.success) {
+                    console.log(imgData.data.url);
+                    const bikeDetails = {
+                        sellerName: user.displayName,
+                        email: user.email,
+                        name: data.bikeName,
+                        image: imgData.data.url,
+                        orginalPrice: data.orginalPrice,
+                        resalePrice: data.resalePrice,
+                        address: data.address,
+                        phoneNumber: data.phoneNumber,
+                        condition: data.condition,
+                        year_of_use: data.year_of_use,
+                        brand: data.brand,
+                        description : data.description,
+                        status: 'pending',
+                        time: new Date()
+                    }
+                    console.log(data.bikeName);
+                    fetch('http://localhost:5000/bikes', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            athorization: `bearer ${localStorage.getItem('access-token')}`
+                        },
+                        body: JSON.stringify(bikeDetails)
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            navigate('/dashboard/myproducts')
+                        })
+                }
+            })
+
+
     }
 
     return (
@@ -22,7 +74,7 @@ const AddAProduct = () => {
                             <span className="label-text">BikeName</span>
                         </label>
                         <input type="text"
-                            {...register("name", {
+                            {...register("bikeName", {
                                 required: 'Bike Name is required'
                             })} className="input input-bordered w-full" />
                         {errors.name && <p className='text-error'>{errors.name.message}</p>}
@@ -35,7 +87,6 @@ const AddAProduct = () => {
                             {...register("orginalPrice", {
                                 required: 'Original Price is required'
                             })} className="input input-bordered w-full" />
-                        {errors.name && <p className='text-error'>{errors.name.message}</p>}
                     </div>
 
                 </div>
@@ -50,7 +101,6 @@ const AddAProduct = () => {
                                 required: "Location is required",
 
                             })} className="input input-bordered w-full" />
-                        {errors.email && <p className='text-error'>{errors.email.message}</p>}
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
@@ -61,7 +111,6 @@ const AddAProduct = () => {
                                 required: "Resale price is required",
 
                             })} className="input input-bordered w-full" />
-                        {errors.email && <p className='text-error'>{errors.email.message}</p>}
                     </div>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -73,7 +122,6 @@ const AddAProduct = () => {
                             {...register("year_of_use", {
                                 required: 'Year of use is required'
                             })} className="input input-bordered w-full" />
-                        {errors.name && <p className='text-error'>{errors.name.message}</p>}
                     </div>
                     <div className="form-control w-full">
                         <label className="label">
@@ -89,13 +137,46 @@ const AddAProduct = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                     <div className="form-control w-full">
                         <label className="label">
+                            <span className="label-text">Phone Number</span>
+                        </label>
+                        <input type="text"
+                            {...register("phoneNumber", {
+                                required: "Location is required",
+
+                            })} className="input input-bordered w-full" />
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Condition</span>
+                        </label>
+                        <select {...register('condition')} className="select select-bordered w-full ">
+                            <option value='Excellent'>Excellent</option>
+                            <option value='Good'>Good</option>
+                            <option value='Fair'>Fair</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+
+                    <div className="form-control w-full">
+                        <label className="label">
                             <span className="label-text">Photo</span>
                         </label>
                         <input type="file"
-                            {...register("image", {
+                            {...register("photo", {
                                 required: 'Photo is required'
                             })} className="input input-bordered w-full" />
-                        {errors.photo && <p className='text-error'>{errors.photo.message}</p>}
+                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Description</span>
+                        </label>
+                        <textarea {...register("description", {
+                            required: 'Year of use is required'
+                        })} className="textarea textarea-bordered" placeholder="Bio">
+
+                        </textarea>
                     </div>
                 </div>
 

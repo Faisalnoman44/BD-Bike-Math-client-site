@@ -3,7 +3,7 @@ import React from 'react';
 const Reader = () => {
     return (
         <div>
-            <h2 className="text-primary my-10 text-center text-4xl font-semibold">Comments</h2>
+            <h2 className="text-primary mt-10 text-center text-4xl font-semibold">Comments</h2>
             <div className="carousel w-full md:h-[400px]">
                 <div id="item1" className="carousel-item w-full grid grid-cols-1 md:grid-cols-2" >
                     <div className='p-10 flex justify-center items-center'>

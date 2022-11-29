@@ -6,7 +6,11 @@ const AllSeller = () => {
     const { data: sellers = [] } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/seller');
+            const res = await fetch('http://localhost:5000/users/seller', {
+                headers: {
+                    athorization: `bearer ${localStorage.getItem('access-token')}`
+                }
+            });
             const data = res.json();
             return data;
         }
@@ -29,7 +33,7 @@ const AllSeller = () => {
                     <tbody>
                         {
                             sellers.map((seller, i) => <tr key={seller._id} className="hover">
-                                <th>{i+1}</th>
+                                <th>{i + 1}</th>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
                                 <td><button className='btn btn-error btn-sm'>Delete</button></td>

@@ -1,37 +1,39 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import BookingModal from './BookingModal/BookingModal';
 import OneBike from './OneBike';
 
-const AllBikes = () => {
-    // const [bikes, setBikes] = useState([])
-    const bikes = useLoaderData()
-    console.log(bikes)
+const AllallBike = () => {
+    const [bookingBike, setBookingBike] = useState(null)
+    const allBike = useLoaderData()
+
+    const [bike, setBike] = useState([])
+    const bikes = allBike.filter(bike => bike.status !== 'pending')
 
 
-    // const {data : bikes = [], isLoading} = useQuery({
-    //     queryKey:['bikes'],
-    //     queryFn: async () =>{
-    //      const res = await fetch('http://localhost:5000/bikes');
-    //      const data = await res.json();
-    //      return data;
-    //     }
-    // })
 
-    // useEffect(() =>{
-    //     fetch('bike.json')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         setBikes(data)
-    //     })
-    // })
+
+
     return (
-        <div className='mt-10'>
+        <>
+            <div className='mt-10'>
+                {
+                    bikes.map(bike => <OneBike
+                        key={bike._id}
+                        bike={bike}
+                        setBookingBike={setBookingBike}
+                    ></OneBike>)
+                }
+            </div>
             {
-                bikes.map(bike => <OneBike key={bike._id} bike={bike}></OneBike>)
+                bookingBike && <BookingModal
+                    bookingBike={bookingBike}
+                    setBookingBike={setBookingBike}
+                ></BookingModal>
             }
-        </div>
+        </>
+
     );
 };
 
-export default AllBikes;
+export default AllallBike;

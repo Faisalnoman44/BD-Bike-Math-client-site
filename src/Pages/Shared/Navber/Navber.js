@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
@@ -13,11 +13,14 @@ const Navber = () => {
 
     const menuItem = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
-        <li><Link to='/dashboard'>Dashboard</Link></li>
+
         <li><Link to='/blog'>Blog</Link></li>
         {
             user?.email ?
-                <li><button onClick={handleLogOut}>Logout</button></li>
+                <React.Fragment>
+                    <li><Link to='/dashboard'>Dashboard</Link></li>
+                    <li><button onClick={handleLogOut}>Logout</button></li>
+                </React.Fragment>
                 :
                 <li><Link to='/login'>Login</Link></li>
         }
@@ -35,7 +38,7 @@ const Navber = () => {
                             {menuItem}
                         </ul>
                     </div>
-                    <Link className="btn btn-ghost normal-case text-xl">Doctors Portal</Link>
+                    <Link className="btn btn-ghost normal-case text-xl">BD BIKES MATH</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0 font-semibold ">
