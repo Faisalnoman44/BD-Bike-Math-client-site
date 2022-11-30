@@ -3,7 +3,7 @@ import React from 'react';
 
 const ReportedItem = () => {
 
-    const { data: reportedItem = [], refetch } = useQuery({
+    const { data: reportedItem = []} = useQuery({
         queryKey: ['reportedItem'],
         queryFn: async () => {
             const res = await fetch('https://final-assignment-server-site-rho.vercel.app/bikes/reported', {
@@ -31,24 +31,6 @@ const ReportedItem = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                        </tr>
-                        <tr className="hover">
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
-                            <td>Purple</td>
-                        </tr>
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
-                            <td>Red</td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
