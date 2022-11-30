@@ -1,12 +1,12 @@
 import React from 'react';
 
 const OneBike = ({ bike, setBookingBike, handleReportToAdmin }) => {
-    const { _id, name, sellerName, brand, image, time, address, resalePrice, orginalPrice, year_of_use, status, phoneNumber, isVerified } = bike
+    const { _id, name, sellerName, brand, image, time, address, resalePrice, orginalPrice, year_of_use, status, phoneNumber, isVerified,description ,condition} = bike
 
 
 
     return (
-        <div className="card lg:card-side bg-base-100 shadow-xl mb-7 md:h-96">
+        <div className="card lg:card-side bg-base-100 shadow-xl mb-7">
             <figure className='md:w-5/12' >
                 <img className='h-full' src={image} alt="Album" />
             </figure>
@@ -18,7 +18,9 @@ const OneBike = ({ bike, setBookingBike, handleReportToAdmin }) => {
                     <p><span className='font-semibold'>Resale Price:</span> {resalePrice}</p>
                     <p><span className='font-semibold'>Original Price:</span> {orginalPrice}</p>
                     <p><span className='font-semibold'>Year of use:</span> {year_of_use}</p>
+                    <p><span className='font-semibold'>Condition:</span> {condition}</p>
                     <p><span className='font-semibold'>Posted Time:</span> {time}</p>
+                    <p><span className='font-semibold'>Description:</span> {description}</p>
 
                 </div>
                 <div>

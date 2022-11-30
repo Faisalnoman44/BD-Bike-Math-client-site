@@ -13,6 +13,8 @@ import MyProducts from '../../Pages/DashBoard/MyProducts/MyProducts';
 import MyOrders from '../../Pages/DashBoard/MyOrders/MyOrders';
 import AdminRoute from "../AdminRoute/AdminRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
+import Blog from "../../Pages/Blog/Blog";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -20,6 +22,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -28,7 +31,11 @@ const router = createBrowserRouter([
             {
                 path: '/allbike/:brand',
                 element: <AllBikes></AllBikes>,
-                loader: ({params}) => fetch(`http://localhost:5000/bikes/${params.brand}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/bikes/${params.brand}`)
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>
             },
             {
                 path: '/login',
@@ -41,37 +48,38 @@ const router = createBrowserRouter([
 
     },
     {
-        path:'/dashboard',
-        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        children:[
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <ErrorPage></ErrorPage>,
+        children: [
             {
-                path:'/dashboard/allbuyer',
-                element:<AdminRoute><AllBuyer></AllBuyer></AdminRoute>
+                path: '/dashboard/allbuyer',
+                element: <AdminRoute><AllBuyer></AllBuyer></AdminRoute>
             },
             {
-                path:'/dashboard/allseller',
-                element:<AdminRoute><AllSeller></AllSeller></AdminRoute>
+                path: '/dashboard/allseller',
+                element: <AdminRoute><AllSeller></AllSeller></AdminRoute>
             },
             {
-                path:'/dashboard/reporteditem',
-                element:<AdminRoute><ReportedItem></ReportedItem></AdminRoute>
+                path: '/dashboard/reporteditem',
+                element: <AdminRoute><ReportedItem></ReportedItem></AdminRoute>
             },
             {
-                path:'/dashboard/addaproduct',
-                element:<SellerRoute><AddAProduct></AddAProduct></SellerRoute>
+                path: '/dashboard/addaproduct',
+                element: <SellerRoute><AddAProduct></AddAProduct></SellerRoute>
             },
             {
-                path:'/dashboard/myproducts',
-                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
+                path: '/dashboard/myproducts',
+                element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
-                path:'/dashboard/myorders',
-                element:<MyOrders></MyOrders>
+                path: '/dashboard/myorders',
+                element: <MyOrders></MyOrders>
             },
         ]
     }
-    
-    
+
+
 ])
 
 export default router

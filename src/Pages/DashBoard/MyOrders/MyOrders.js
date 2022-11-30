@@ -31,6 +31,7 @@ const MyOrders = () => {
                             <th>Bike Name</th>
                             <th>Meeting Location</th>
                             <th>Bike Price</th>
+                            <th>Payment</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,6 +41,7 @@ const MyOrders = () => {
                                 <td>{order.bikeName}</td>
                                 <td>{order.meetingLocation}</td>
                                 <td>{order.bikePrice}</td>
+                                <td><button className='btn btn-primary btn-sm'>Pay Now</button></td>
                             </tr>)
                         }
                     </tbody>

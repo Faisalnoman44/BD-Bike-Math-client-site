@@ -10,7 +10,11 @@ const MyProducts = () => {
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bikes/myorders/${user?.email}`);
+            const res = await fetch(`http://localhost:5000/bikes/myorders/${user?.email}`, {
+                headers: {
+                    athorization: `bearer ${localStorage.getItem('access-token')}`
+                }
+            });
             const data = await res.json();
             return data;
         }
@@ -69,7 +73,7 @@ const MyProducts = () => {
                                 <td>{product.name}</td>
                                 <td>{product.resalePrice}</td>
                                 <td>{product.status}</td>
-                                <td><button className='btn btn-primary btn-sm'>Advertise</button></td>
+                                <td>{product.status === 'unsold' && <button className='btn btn-primary btn-sm'>Advertise</button>}</td>
                                 <td><button onClick={() => handleDelete(product._id)} className='btn btn-error btn-sm'>Delete</button></td>
                             </tr>)
                         }

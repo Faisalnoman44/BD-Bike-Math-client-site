@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Context/AuthProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BookingModal = ({ bookingBike, setBookingBike }) => {
     const { _id, name, resalePrice } = bookingBike
@@ -30,7 +32,8 @@ const BookingModal = ({ bookingBike, setBookingBike }) => {
         fetch('http://localhost:5000/bookings', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                athorization: `bearer ${localStorage.getItem('access-token')}`
             },
             body: JSON.stringify(bookingData)
         })
@@ -49,14 +52,14 @@ const BookingModal = ({ bookingBike, setBookingBike }) => {
         fetch(`http://localhost:5000/bikes/${_id}`, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                athorization: `bearer ${localStorage.getItem('access-token')}`
             },
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                setBookingBike(null)
-                toast.success('Booking Confirmed', {
+                toast.success('Booked Successfully', {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -66,6 +69,8 @@ const BookingModal = ({ bookingBike, setBookingBike }) => {
                     progress: undefined,
                     theme: "light",
                 });
+
+                setBookingBike(null)
                 navigate('/dashboard/myorders')
 
             })
@@ -89,6 +94,7 @@ const BookingModal = ({ bookingBike, setBookingBike }) => {
                     </form>
                 </div>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
