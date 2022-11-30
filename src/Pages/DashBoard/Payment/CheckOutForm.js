@@ -13,7 +13,7 @@ const CheckOutForm = ({ booking }) => {
 
     // useEffect(() => {
     //     // Create PaymentIntent as soon as the page loads
-    //     fetch('http://localhost:5000/create-payment-intent', {
+    //     fetch('https://final-assignment-server-site-rho.vercel.app/create-payment-intent', {
     //         method: "POST",
     //         headers: {
     //             "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const CheckOutForm = ({ booking }) => {
         else {
             setCardError('')
         }
-        
+
 
         const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
             clientSecret,

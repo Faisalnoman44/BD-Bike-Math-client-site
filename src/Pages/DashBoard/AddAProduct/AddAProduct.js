@@ -45,7 +45,7 @@ const AddAProduct = () => {
                         time: new Date()
                     }
                     console.log(data.bikeName);
-                    fetch('http://localhost:5000/bikes', {
+                    fetch('https://final-assignment-server-site-rho.vercel.app/bikes', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

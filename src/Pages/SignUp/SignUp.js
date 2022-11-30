@@ -61,7 +61,7 @@ const SignUp = () => {
     }
 
     const saveUserToDb = (userDetails, email) => {
-        fetch('http://localhost:5000/users', {
+        fetch('https://final-assignment-server-site-rho.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -87,7 +87,7 @@ const SignUp = () => {
             draggable: true,
             progress: undefined,
             theme: "light",
-            });
+        });
         navigate(from, { replace: true })
     }
 

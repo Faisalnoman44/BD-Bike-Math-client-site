@@ -5,7 +5,7 @@ const useSeller = email => {
     const [isSellerLoading, setisSellerLoading] = useState(true)
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/seller/${email}`, {
+            fetch(`https://final-assignment-server-site-rho.vercel.app/users/seller/${email}`, {
                 headers: {
                     athorization: `bearer ${localStorage.getItem('access-token')}`
                 }

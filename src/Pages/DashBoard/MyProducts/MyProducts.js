@@ -10,7 +10,7 @@ const MyProducts = () => {
     const { data: myProducts = [], refetch } = useQuery({
         queryKey: ['myProducts'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/bikes/myorders/${user?.email}`, {
+            const res = await fetch(`https://final-assignment-server-site-rho.vercel.app/bikes/myorders/${user?.email}`, {
                 headers: {
                     athorization: `bearer ${localStorage.getItem('access-token')}`
                 }
@@ -22,7 +22,7 @@ const MyProducts = () => {
 
     const handleDelete = id => {
         console.log(id);
-        fetch(`http://localhost:5000/bikes/${id}`, {
+        fetch(`https://final-assignment-server-site-rho.vercel.app/bikes/${id}`, {
             method: 'DELETE',
             headers: {
                 athorization: `bearer ${localStorage.getItem('access-token')}`

@@ -29,7 +29,7 @@ const BookingModal = ({ bookingBike, setBookingBike }) => {
 
         }
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://final-assignment-server-site-rho.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -49,7 +49,7 @@ const BookingModal = ({ bookingBike, setBookingBike }) => {
 
 
     const updateBikeCollection = (_id) => {
-        fetch(`http://localhost:5000/bikes/${_id}`, {
+        fetch(`https://final-assignment-server-site-rho.vercel.app/bikes/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

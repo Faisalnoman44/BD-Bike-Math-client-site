@@ -7,7 +7,7 @@ const AllSeller = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/seller', {
+            const res = await fetch('https://final-assignment-server-site-rho.vercel.app/users/seller', {
                 headers: {
                     athorization: `bearer ${localStorage.getItem('access-token')}`
                 }
@@ -18,7 +18,7 @@ const AllSeller = () => {
     })
 
     const handleVerify = (id, email) => {
-        fetch(`http://localhost:5000/users/verify/${id}`, {
+        fetch(`https://final-assignment-server-site-rho.vercel.app/users/verify/${id}`, {
             method: 'PUT',
             headers: {
                 athorization: `bearer ${localStorage.getItem('access-token')}`
@@ -28,7 +28,7 @@ const AllSeller = () => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    fetch(`http://localhost:5000/bikes/verify/${email}`, {
+                    fetch(`https://final-assignment-server-site-rho.vercel.app/bikes/verify/${email}`, {
                         method: 'PUT',
                         headers: {
                             athorization: `bearer ${localStorage.getItem('access-token')}`
@@ -56,7 +56,7 @@ const AllSeller = () => {
 
     const handleDelete = id => {
         console.log(id);
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://final-assignment-server-site-rho.vercel.app/users/${id}`, {
             method: 'DELETE',
             headers: {
                 athorization: `bearer ${localStorage.getItem('access-token')}`
@@ -100,7 +100,7 @@ const AllSeller = () => {
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
                                 <td>{seller.isVerified !== 'verified' ? <button onClick={() => handleVerify(seller._id, seller?.email)} className='btn btn-sm btn-primary'>Verify</button>
-                                : <button disabled className='btn btn-primary btn-sm'>Verified</button>
+                                    : <button disabled className='btn btn-primary btn-sm'>Verified</button>
                                 }</td>
                                 <td><button onClick={() => handleDelete(seller._id)} className='btn btn-error btn-sm'>Delete</button></td>
                             </tr>)

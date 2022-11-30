@@ -33,7 +33,7 @@ const router = createBrowserRouter([
             {
                 path: '/allbike/:brand',
                 element: <AllBikes></AllBikes>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bikes/${params.brand}`)
+                loader: ({ params }) => fetch(`https://final-assignment-server-site-rho.vercel.app/bikes/${params.brand}`)
             },
             {
                 path: '/blog',
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute><Payment></Payment></BuyerRoute>,
-                loader:({params}) =>fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://final-assignment-server-site-rho.vercel.app/bookings/${params.id}`)
             },
         ]
     }

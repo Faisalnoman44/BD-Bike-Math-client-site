@@ -7,7 +7,7 @@ const AllBuyer = () => {
     const { data: buyers = [], refetch } = useQuery({
         queryKey: ['buyers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/buyer', {
+            const res = await fetch('https://final-assignment-server-site-rho.vercel.app/users/buyer', {
                 headers: {
                     athorization: `bearer ${localStorage.getItem('access-token')}`
                 }
@@ -19,7 +19,7 @@ const AllBuyer = () => {
 
     const handleDelete = id => {
         console.log(id);
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://final-assignment-server-site-rho.vercel.app/users/${id}`, {
             method: 'DELETE',
             headers: {
                 athorization: `bearer ${localStorage.getItem('access-token')}`
@@ -43,7 +43,7 @@ const AllBuyer = () => {
     }
 
     // const handleMakeAdmin = id => {
-    //     fetch(`http://localhost:5000/users/admin/${id}`, {
+    //     fetch(`https://final-assignment-server-site-rho.vercel.app/users/admin/${id}`, {
     //         method: 'PUT',
     //         headers: {
     //             athorization: `bearer ${localStorage.getItem('access-token')}`

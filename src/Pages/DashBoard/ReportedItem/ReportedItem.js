@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const ReportedItem = () => {
-    
+
     const { data: reportedItem = [], refetch } = useQuery({
         queryKey: ['reportedItem'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/bikes/reported', {
+            const res = await fetch('https://final-assignment-server-site-rho.vercel.app/bikes/reported', {
                 headers: {
                     'content-type': 'application/json',
                     athorization: `bearer ${localStorage.getItem('access-token')}`

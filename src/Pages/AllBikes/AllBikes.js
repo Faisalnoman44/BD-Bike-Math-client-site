@@ -10,7 +10,7 @@ const AllallBike = () => {
 
     const handleReportToAdmin = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/bikes/reported/${id}`, {
+        fetch(`https://final-assignment-server-site-rho.vercel.app/bikes/reported/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
