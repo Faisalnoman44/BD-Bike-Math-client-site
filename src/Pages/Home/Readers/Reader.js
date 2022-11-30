@@ -7,44 +7,44 @@ const Reader = () => {
             <div className="carousel w-full md:h-[400px]">
                 <div id="item1" className="carousel-item w-full grid grid-cols-1 md:grid-cols-2" >
                     <div className='p-10 flex justify-center items-center'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium natus alias ut enim non impedit cumque sint reprehenderit delectus minima soluta minus voluptatum earum ad itaque, neque nostrum magni. Placeat dolor ratione facilis tempore id minima incidunt quisquam nam molestias debitis similique, sunt fugit beatae alias nemo fa</p>
-                        <img src="https://i.ibb.co/7bhw03R/pic4.jpg " className='w-12 h-12 rounded-full mt-56' alt="" />
+                    <p>onek valo bike paisi.onek valo condition e.Sob kagoj soho paici..onek help korse bike pete amake...thank you so much</p>
+                        <img src="https://media.istockphoto.com/id/1270067126/photo/smiling-indian-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=ovIQ5GPurLd3mOUj82jB9v-bjGZ8updgy1ACaHMeEC0= " className='w-12 h-12 rounded-full mt-56' alt="" />
                     </div>
                     <div className='p-10 flex justify-center items-center'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium natus alias ut enim non impedit cumque sint reprehenderit delectus minima soluta minus voluptatum earum ad itaque, neque nostrum magni. Placeat dolor ratione facilis tempore id minima incidunt quisquam nam molestias debitis similique, sunt fugit beatae alias nemo fa</p>
-                        <img src="https://i.ibb.co/7bhw03R/pic4.jpg " className='w-12 h-12 rounded-full mt-56' alt="" />
+                        <p>onek valo bike paisi.onek valo condition e.Sob kagoj soho paici..onek help korse bike pete amake...thank you so much</p>
+                        <img src="https://media.istockphoto.com/id/1270067126/photo/smiling-indian-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=ovIQ5GPurLd3mOUj82jB9v-bjGZ8updgy1ACaHMeEC0=" className='w-12 h-12 rounded-full mt-56' alt="" />
                     </div>
                 </div>
                 <div id="item2" className="carousel-item w-full grid grid-cols-1 md:grid-cols-2">
                     <div className='p-10 flex justify-center items-center'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium natus alias ut enim non impedit cumque sint reprehenderit delectus minima soluta minus voluptatum earum ad itaque, neque nostrum magni. Placeat dolor ratione facilis tempore id minima incidunt quisquam nam molestias debitis similique, sunt fugit beatae alias nemo fa</p>
-                        <img src="https://i.ibb.co/7bhw03R/pic4.jpg " className='w-12 h-12 rounded-full mt-56' alt="" />
+                        <p>onek valo bike paisi.onek valo condition e.Sob kagoj soho paici..onek help korse bike pete amake...thank you so much</p>
+                        <img src="https://media.istockphoto.com/id/1270067126/photo/smiling-indian-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=ovIQ5GPurLd3mOUj82jB9v-bjGZ8updgy1ACaHMeEC0= " className='w-12 h-12 rounded-full mt-56' alt="" />
                     </div>
                     <div className='p-10 flex justify-center items-center'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium natus alias ut enim non impedit cumque sint reprehenderit delectus minima soluta minus voluptatum earum ad itaque, neque nostrum magni. Placeat dolor ratione facilis tempore id minima incidunt quisquam nam molestias debitis similique, sunt fugit beatae alias nemo fa</p>
-                        <img src="https://i.ibb.co/7bhw03R/pic4.jpg " className='w-12 h-12 rounded-full mt-56' alt="" />
+                    <p>onek valo bike paisi.onek valo condition e.Sob kagoj soho paici..onek help korse bike pete amake...thank you so much</p>
+                        <img src="https://media.istockphoto.com/id/1270067126/photo/smiling-indian-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=ovIQ5GPurLd3mOUj82jB9v-bjGZ8updgy1ACaHMeEC0= " className='w-12 h-12 rounded-full mt-56' alt="" />
                     </div>
                 </div>
                 <div id="item3" className="carousel-item w-full grid grid-cols-1 md:grid-cols-2">
                     <div className='p-10 flex justify-center items-center'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium natus alias ut enim non impedit cumque sint reprehenderit delectus minima soluta minus voluptatum earum ad itaque, neque nostrum magni. Placeat dolor ratione facilis tempore id minima incidunt quisquam nam molestias debitis similique, sunt fugit beatae alias nemo fa</p>
-                        <img src="https://i.ibb.co/7bhw03R/pic4.jpg " className='w-12 h-12 rounded-full mt-56' alt="" />
+                    <p>onek valo bike paisi.onek valo condition e.Sob kagoj soho paici..onek help korse bike pete amake...thank you so much</p>
+                        <img src="https://media.istockphoto.com/id/1270067126/photo/smiling-indian-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=ovIQ5GPurLd3mOUj82jB9v-bjGZ8updgy1ACaHMeEC0=" className='w-12 h-12 rounded-full mt-56' alt="" />
 
                     </div>
                     <div className='p-10 flex justify-center items-center'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium natus alias ut enim non impedit cumque sint reprehenderit delectus minima soluta minus voluptatum earum ad itaque, neque nostrum magni. Placeat dolor ratione facilis tempore id minima incidunt quisquam nam molestias debitis similique, sunt fugit beatae alias nemo fa</p>
-                        <img src="https://i.ibb.co/7bhw03R/pic4.jpg " className='w-12 h-12 rounded-full mt-56' alt="" />
+                    <p>onek valo bike paisi.onek valo condition e.Sob kagoj soho paici..onek help korse bike pete amake...thank you so much</p>
+                        <img src="https://media.istockphoto.com/id/1270067126/photo/smiling-indian-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=ovIQ5GPurLd3mOUj82jB9v-bjGZ8updgy1ACaHMeEC0=" className='w-12 h-12 rounded-full mt-56' alt="" />
                     </div>
                 </div>
                 <div id="item4" className="carousel-item w-full grid grid-cols-1 md:grid-cols-2">
                     <div className='p-10 flex justify-center items-center'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium natus alias ut enim non impedit cumque sint reprehenderit delectus minima soluta minus voluptatum earum ad itaque, neque nostrum magni. Placeat dolor ratione facilis tempore id minima incidunt quisquam nam molestias debitis similique, sunt fugit beatae alias nemo fa</p>
-                        <img src="https://i.ibb.co/7bhw03R/pic4.jpg " className='w-12 h-12 rounded-full mt-56' alt="" />
+                    <p>onek valo bike paisi.onek valo condition e.Sob kagoj soho paici..onek help korse bike pete amake...thank you so much</p>
+                        <img src="https://media.istockphoto.com/id/1270067126/photo/smiling-indian-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=ovIQ5GPurLd3mOUj82jB9v-bjGZ8updgy1ACaHMeEC0=" className='w-12 h-12 rounded-full mt-56' alt="" />
 
                     </div>
                     <div className='p-10 flex justify-center items-center'>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium natus alias ut enim non impedit cumque sint reprehenderit delectus minima soluta minus voluptatum earum ad itaque, neque nostrum magni. Placeat dolor ratione facilis tempore id minima incidunt quisquam nam molestias debitis similique, sunt fugit beatae alias nemo fa</p>
-                        <img src="https://i.ibb.co/7bhw03R/pic4.jpg " className='w-12 h-12 rounded-full mt-56' alt="" />
+                    <p>onek valo bike paisi.onek valo condition e.Sob kagoj soho paici..onek help korse bike pete amake...thank you so much</p>
+                        <img src="https://media.istockphoto.com/id/1270067126/photo/smiling-indian-man-looking-at-camera.jpg?s=612x612&w=0&k=20&c=ovIQ5GPurLd3mOUj82jB9v-bjGZ8updgy1ACaHMeEC0= " className='w-12 h-12 rounded-full mt-56' alt="" />
                     </div>
                 </div>
             </div>

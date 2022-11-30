@@ -8,16 +8,15 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK);
 console.log(stripePromise);
 
 const Payment = () => {
-    const bookings = useLoaderData()
-    console.log(bookings);
-    const { bikeName, bikePrice } = bookings
+    const booking = useLoaderData()
+    console.log(booking);
 
     return (
         <div>
-            <h1 className='text-2xl my-4'>Payment For {bikeName}</h1>
+            <h1 className='text-2xl my-4'>Payment For </h1>
             <div className='w-full my-10 border border-primary p-5'>
                 <Elements stripe={stripePromise}>
-                    <CheckOutForm />
+                    <CheckOutForm  booking={booking} />
                 </Elements>
             </div>
         </div>
