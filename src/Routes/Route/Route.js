@@ -15,6 +15,8 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Blog from "../../Pages/Blog/Blog";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
+import Payment from "../../Pages/DashBoard/Payment/Payment";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -74,7 +76,12 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/myorders',
-                element: <MyOrders></MyOrders>
+                element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <BuyerRoute><Payment></Payment></BuyerRoute>,
+                loader:({params}) =>fetch(`http://localhost:5000/bookings/${params.id}`)
             },
         ]
     }
