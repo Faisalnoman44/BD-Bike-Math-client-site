@@ -5,23 +5,32 @@ import OneBike from './OneBike';
 
 const AllallBike = () => {
     const [bookingBike, setBookingBike] = useState(null)
-    const allBike = useLoaderData()
+    const bike = useLoaderData()
 
-    const [bike, setBike] = useState([])
-    const bikes = allBike.filter(bike => bike.status !== 'pending')
-
-
-
-
+const handleReportToAdmin = (id) =>{
+    console.log(id);
+    fetch(`http://localhost:5000/bikes/reported/${id}`,{
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            athorization: `bearer ${localStorage.getItem('access-token')}`
+        },
+    })
+    .then(res => res.json())
+    .then(data =>{
+        console.log(data)
+    })
+} 
 
     return (
         <>
             <div className='mt-10'>
                 {
-                    bikes.map(bike => <OneBike
+                    bike.map(bike => <OneBike
                         key={bike._id}
                         bike={bike}
                         setBookingBike={setBookingBike}
+                        handleReportToAdmin ={handleReportToAdmin}
                     ></OneBike>)
                 }
             </div>

@@ -16,24 +16,39 @@ const AllBuyer = () => {
         }
     })
 
-    const handleMakeAdmin = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
-            method: 'PUT',
+    const handleDelete = id => {
+        console.log(id);
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE',
             headers: {
                 athorization: `bearer ${localStorage.getItem('access-token')}`
             }
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                if (data.matchedCount > 0) {
-                    refetch()
-                }
-                if (data.message === "forbidden access") {
-                }
-            })
-
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data)
+            refetch()
+        })
     }
+
+    // const handleMakeAdmin = id => {
+    //     fetch(`http://localhost:5000/users/admin/${id}`, {
+    //         method: 'PUT',
+    //         headers: {
+    //             athorization: `bearer ${localStorage.getItem('access-token')}`
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             console.log(data)
+    //             if (data.matchedCount > 0) {
+    //                 refetch()
+    //             }
+    //             if (data.message === "forbidden access") {
+    //             }
+    //         })
+
+    // }
 
     return (
         <div className='full'>
@@ -45,7 +60,6 @@ const AllBuyer = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Give Access</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -55,8 +69,7 @@ const AllBuyer = () => {
                                 <th>{i + 1}</th>
                                 <td>{buyer.name}</td>
                                 <td>{buyer.email}</td>
-                                <td>{buyer.role !== 'admin' && <button onClick={() => handleMakeAdmin(buyer._id)} className='btn btn-error btn-sm'>Admin</button>}</td>
-                                <td><button className='btn btn-primary btn-sm'>Delete</button></td>
+                                <td><button onClick={() => handleDelete(buyer._id)} className='btn btn-error btn-sm'>Delete</button></td>
                             </tr>)
                         }
                     </tbody>

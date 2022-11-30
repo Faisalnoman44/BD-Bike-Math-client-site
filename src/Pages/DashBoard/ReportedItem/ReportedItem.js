@@ -1,9 +1,25 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const ReportedItem = () => {
+    
+    const { data: reportedItem = [] } = useQuery({
+        queryKey: ['reportedItem'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/bikes/reported', {
+                headers: {
+                    'content-type': 'application/json',
+                    athorization: `bearer ${localStorage.getItem('access-token')}`
+                },
+            })
+            const data = await res.json();
+            console.log(data);
+            return data
+        }
+    })
     return (
         <div>
-            <h1 className='text-2xl my-4'>Reported Item</h1>
+            <h1 className='text-2xl my-4'>Reported Item {reportedItem.length}</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>

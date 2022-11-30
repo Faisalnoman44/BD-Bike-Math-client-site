@@ -3,7 +3,7 @@ import React from 'react';
 
 const AllSeller = () => {
 
-    const { data: sellers = [] } = useQuery({
+    const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users/seller', {
@@ -16,6 +16,35 @@ const AllSeller = () => {
         }
     })
 
+    const handleVerify = id => {
+        fetch(`http://localhost:5000/users/verify/${id}`, {
+            method: 'PUT',
+            headers: {
+                athorization: `bearer ${localStorage.getItem('access-token')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            refetch()
+        })
+    }
+
+    const handleDelete = (id, email) => {
+        console.log(id);
+        fetch(`http://localhost:5000/users/${id}`, {
+            method: 'DELETE',
+            headers: {
+                athorization: `bearer ${localStorage.getItem('access-token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                refetch()
+            })
+    }
+
     return (
         <div>
             <h1 className='text-2xl my-4'>All seller</h1>
@@ -26,8 +55,8 @@ const AllSeller = () => {
                             <th></th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Verify</th>
                             <th>Action</th>
-                            <th>Give Access</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,8 +65,8 @@ const AllSeller = () => {
                                 <th>{i + 1}</th>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
-                                <td><button className='btn btn-error btn-sm'>Delete</button></td>
-                                <td><button className='btn btn-primary btn-sm'>Admin</button></td>
+                                <td>{seller.isVerified !== 'verified'  && <button onClick={() => handleVerify(seller._id, seller?.email)} className='btn btn-sm btn-primary'>Verify</button>}</td>
+                                <td><button onClick={() => handleDelete(seller._id)} className='btn btn-error btn-sm'>Delete</button></td>
                             </tr>)
                         }
                     </tbody>

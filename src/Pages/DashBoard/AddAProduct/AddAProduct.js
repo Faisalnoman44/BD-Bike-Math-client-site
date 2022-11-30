@@ -40,8 +40,8 @@ const AddAProduct = () => {
                         condition: data.condition,
                         year_of_use: data.year_of_use,
                         brand: data.brand,
-                        description : data.description,
-                        status: 'pending',
+                        description: data.description,
+                        status: 'unsold',
                         time: new Date()
                     }
                     console.log(data.bikeName);

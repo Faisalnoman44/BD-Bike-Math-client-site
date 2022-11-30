@@ -11,6 +11,8 @@ import AddAProduct from "../../Pages/DashBoard/AddAProduct/AddAProduct";
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import MyProducts from '../../Pages/DashBoard/MyProducts/MyProducts';
 import MyOrders from '../../Pages/DashBoard/MyOrders/MyOrders';
+import AdminRoute from "../AdminRoute/AdminRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 
 const { createBrowserRouter } = require("react-router-dom");
@@ -44,27 +46,23 @@ const router = createBrowserRouter([
         children:[
             {
                 path:'/dashboard/allbuyer',
-                element:<AllBuyer></AllBuyer>
-            },
-            {
-                path:'/dashboard',
-                element:<AllBuyer></AllBuyer>
+                element:<AdminRoute><AllBuyer></AllBuyer></AdminRoute>
             },
             {
                 path:'/dashboard/allseller',
-                element:<AllSeller></AllSeller>
+                element:<AdminRoute><AllSeller></AllSeller></AdminRoute>
             },
             {
                 path:'/dashboard/reporteditem',
-                element:<ReportedItem></ReportedItem>
+                element:<AdminRoute><ReportedItem></ReportedItem></AdminRoute>
             },
             {
                 path:'/dashboard/addaproduct',
-                element:<AddAProduct></AddAProduct>
+                element:<SellerRoute><AddAProduct></AddAProduct></SellerRoute>
             },
             {
                 path:'/dashboard/myproducts',
-                element:<MyProducts></MyProducts>
+                element:<SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path:'/dashboard/myorders',
