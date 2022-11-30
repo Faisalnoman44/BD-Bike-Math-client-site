@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const MyProducts = () => {
@@ -23,11 +24,21 @@ const MyProducts = () => {
                 athorization: `bearer ${localStorage.getItem('access-token')}`
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            refetch()
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                toast.success('Deleted Successfully', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                refetch()
+            })
     }
 
     return (

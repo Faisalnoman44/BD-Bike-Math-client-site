@@ -8,7 +8,7 @@ const MyOrders = () => {
     const { data: orders = [] } = useQuery({
         queryKey: ['orders'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/${user.email}`, {
+            const res = await fetch(`http://localhost:5000/users/${user?.email}`, {
                 headers: {
                     athorization: `bearer ${localStorage.getItem('access-token')}`
                 }
@@ -22,7 +22,7 @@ const MyOrders = () => {
 
     return (
         <div>
-            <h1 className='text-2xl my-4'>My Orders : {orders.length}</h1>
+            <h1 className='text-2xl my-4'>My Orders </h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -35,7 +35,7 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, i) => <tr key={order._id} className="hover">
+                            orders?.map((order, i) => <tr key={order._id} className="hover">
                                 <th>{i + 1}</th>
                                 <td>{order.bikeName}</td>
                                 <td>{order.meetingLocation}</td>

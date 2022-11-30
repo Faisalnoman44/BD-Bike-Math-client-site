@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import BookingModal from './BookingModal/BookingModal';
 import OneBike from './OneBike';
 
@@ -7,20 +8,30 @@ const AllallBike = () => {
     const [bookingBike, setBookingBike] = useState(null)
     const bike = useLoaderData()
 
-const handleReportToAdmin = (id) =>{
-    console.log(id);
-    fetch(`http://localhost:5000/bikes/reported/${id}`,{
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json',
-            athorization: `bearer ${localStorage.getItem('access-token')}`
-        },
-    })
-    .then(res => res.json())
-    .then(data =>{
-        console.log(data)
-    })
-} 
+    const handleReportToAdmin = (id) => {
+        console.log(id);
+        fetch(`http://localhost:5000/bikes/reported/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                athorization: `bearer ${localStorage.getItem('access-token')}`
+            },
+        })
+            .then(res => res.json())
+            .then(data => {
+                toast.success('Reported Successfully', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+                console.log(data)
+            })
+    }
 
     return (
         <>
@@ -30,7 +41,7 @@ const handleReportToAdmin = (id) =>{
                         key={bike._id}
                         bike={bike}
                         setBookingBike={setBookingBike}
-                        handleReportToAdmin ={handleReportToAdmin}
+                        handleReportToAdmin={handleReportToAdmin}
                     ></OneBike>)
                 }
             </div>

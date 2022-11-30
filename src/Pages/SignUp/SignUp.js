@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../Hooks/useToken';
 
@@ -13,7 +14,7 @@ const SignUp = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const from =  '/';
+    const from = '/';
 
     const handleSignUp = data => {
         console.log(data);
@@ -77,6 +78,16 @@ const SignUp = () => {
     }
 
     if (token) {
+        toast.success('User Creates Successfully', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
         navigate(from, { replace: true })
     }
 

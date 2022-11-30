@@ -3,7 +3,7 @@ import React from 'react';
 
 const ReportedItem = () => {
     
-    const { data: reportedItem = [] } = useQuery({
+    const { data: reportedItem = [], refetch } = useQuery({
         queryKey: ['reportedItem'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/bikes/reported', {
@@ -14,7 +14,7 @@ const ReportedItem = () => {
             })
             const data = await res.json();
             console.log(data);
-            return data
+            return data;
         }
     })
     return (

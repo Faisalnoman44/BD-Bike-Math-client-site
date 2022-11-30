@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const AllSeller = () => {
 
@@ -16,21 +17,44 @@ const AllSeller = () => {
         }
     })
 
-    const handleVerify = id => {
+    const handleVerify = (id, email) => {
         fetch(`http://localhost:5000/users/verify/${id}`, {
             method: 'PUT',
             headers: {
                 athorization: `bearer ${localStorage.getItem('access-token')}`
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            refetch()
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    fetch(`http://localhost:5000/bikes/verify/${email}`, {
+                        method: 'PUT',
+                        headers: {
+                            athorization: `bearer ${localStorage.getItem('access-token')}`
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log(data)
+                            toast.success('Verified', {
+                                position: "top-center",
+                                autoClose: 5000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                            });
+                            refetch()
+                        })
+                }
+
+            })
     }
 
-    const handleDelete = (id, email) => {
+    const handleDelete = id => {
         console.log(id);
         fetch(`http://localhost:5000/users/${id}`, {
             method: 'DELETE',
@@ -41,6 +65,16 @@ const AllSeller = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                toast.success('Deleted Successfully', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
                 refetch()
             })
     }
@@ -65,7 +99,7 @@ const AllSeller = () => {
                                 <th>{i + 1}</th>
                                 <td>{seller.name}</td>
                                 <td>{seller.email}</td>
-                                <td>{seller.isVerified !== 'verified'  && <button onClick={() => handleVerify(seller._id, seller?.email)} className='btn btn-sm btn-primary'>Verify</button>}</td>
+                                <td>{seller.isVerified !== 'verified' && <button onClick={() => handleVerify(seller._id, seller?.email)} className='btn btn-sm btn-primary'>Verify</button>}</td>
                                 <td><button onClick={() => handleDelete(seller._id)} className='btn btn-error btn-sm'>Delete</button></td>
                             </tr>)
                         }

@@ -6,6 +6,8 @@ import useBuyer from '../Hooks/useBuyer';
 import useSeller from '../Hooks/useSeller';
 import Footer from '../Pages/Shared/Footer/Footer';
 import Navber from '../Pages/Shared/Navber/Navber';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext)
@@ -26,7 +28,7 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
 
                         {
-                           isBuyer && <li><Link to='/dashboard/myorders'>My Order</Link></li>
+                            isBuyer && <li><Link to='/dashboard/myorders'>My Order</Link></li>
                         }
 
                         {
@@ -47,6 +49,7 @@ const DashboardLayout = () => {
                 </div>
             </div>
             <Footer></Footer>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
