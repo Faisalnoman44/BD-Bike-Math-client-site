@@ -44,7 +44,6 @@ const BookingModal = ({ bookingBike, setBookingBike }) => {
                     updateBikeCollection(_id)
                 }
             })
-        console.log(bookingData)
     }
 
 

@@ -17,7 +17,6 @@ const AddAProduct = () => {
         console.log(image);
         const formData = new FormData();
         formData.append('image', image)
-        console.log(data);
 
         const url = `https://api.imgbb.com/1/upload?key=${imgbbHostKey}`
         fetch(url, {
@@ -55,7 +54,6 @@ const AddAProduct = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data)
                             navigate('/dashboard/myproducts')
                         })
                 }

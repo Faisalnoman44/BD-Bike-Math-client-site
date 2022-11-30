@@ -29,7 +29,6 @@ const AllallBike = () => {
                     progress: undefined,
                     theme: "light",
                 });
-                console.log(data)
             })
     }
 

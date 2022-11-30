@@ -36,7 +36,6 @@ const AllSeller = () => {
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data)
                             toast.success('Verified', {
                                 position: "top-center",
                                 autoClose: 5000,
@@ -64,7 +63,6 @@ const AllSeller = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 toast.success('Deleted Successfully', {
                     position: "top-center",
                     autoClose: 5000,
