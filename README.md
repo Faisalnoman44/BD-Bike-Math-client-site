@@ -1,4 +1,4 @@
-live link : https://final-assignment-3f709.web.app/dashboard/myorders
+live link : https://final-assignment-3f709.web.app/
 adminEmail: admin@role.com
 adminPassword: Admin12@
 
