@@ -14,7 +14,6 @@ import MyOrders from '../../Pages/DashBoard/MyOrders/MyOrders';
 import AdminRoute from "../AdminRoute/AdminRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
-import Blog from "../../Pages/Blog/Blog";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import Payment from "../../Pages/DashBoard/Payment/Payment";
 
@@ -34,10 +33,6 @@ const router = createBrowserRouter([
                 path: '/allbike/:brand',
                 element: <AllBikes></AllBikes>,
                 loader: ({ params }) => fetch(`https://final-assignment-server-site-rho.vercel.app/bikes/${params.brand}`)
-            },
-            {
-                path: '/blog',
-                element: <Blog></Blog>
             },
             {
                 path: '/login',

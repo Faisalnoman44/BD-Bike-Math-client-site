@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { AuthContext } from '../../../Context/AuthProvider';
+import { toast} from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
+import { AuthContext } from '../../../Context/AuthProvider';
 import 'react-toastify/dist/ReactToastify.css';
 
 const BookingModal = ({ bookingBike, setBookingBike }) => {

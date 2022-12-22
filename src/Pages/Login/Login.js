@@ -1,7 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../Hooks/useToken';
 
@@ -28,7 +28,10 @@ const Login = () => {
                 console.log(user)
                 setLoginUserEmail(data.email)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err.message)
+                setLoginError(err.message)
+            })
 
     }
 
@@ -43,7 +46,18 @@ const Login = () => {
     }
 
     if (token) {
-        navigate(from, {replace:true})
+        console.log(token)
+        toast.success('Login Successful', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        navigate(from, { replace: true })
     }
 
     return (

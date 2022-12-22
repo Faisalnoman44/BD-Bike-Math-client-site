@@ -13,8 +13,6 @@ const Navber = () => {
 
     const menuItem = <React.Fragment>
         <li><Link to='/'>Home</Link></li>
-
-        <li><Link to='/blog'>Blog</Link></li>
         {
             user?.email ?
                 <React.Fragment>
