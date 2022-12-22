@@ -1,4 +1,6 @@
 live link : https://final-assignment-3f709.web.app/dashboard/myorders
+adminEmail: admin@role.com
+adminPassword: Admin12@
 
 Bullet point: 
 1.When you trying to SingUp, if user  is created successfully a toast will notify you.
